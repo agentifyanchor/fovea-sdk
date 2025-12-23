@@ -1,0 +1,33 @@
+{
+    "name": "fovea-sdk",
+    "version": "0.1.0",
+    "description": "Foveated Streaming Engine: High-performance, bandwidth-efficient screen sharing using WASM and Dynamic ROI.",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "files": [
+        "index.js",
+        "fovea_rs/pkg"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "foveated",
+        "streaming",
+        "wasm",
+        "screen-sharing",
+        "bandwidth-optimization"
+    ],
+    "author": "Fovea Team",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/your-username/fovea-sdk.git"
+    },
+    "bugs": {
+        "url": "https://github.com/your-username/fovea-sdk/issues"
+    },
+    "homepage": "https://your-username.github.io/fovea-sdk",
+    "dependencies": {},
+    "devDependencies": {}
+}
