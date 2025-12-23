@@ -1,4 +1,4 @@
-import init, { FoveaEngine } from '../../fovea_rs/pkg/fovea_wasm.js';
+import init, { calculate_diff } from './fovea-lib/fovea_wasm.js';
 
 // DOM Elements
 const videoSource = document.getElementById('videoSource');
@@ -22,13 +22,104 @@ function log(msg, type = 'info') {
     logPanel.prepend(div);
 }
 
+// ---------------------------------------------------------
+// 🧠 The Fovea Engine Class (JS Wrapper)
+// ---------------------------------------------------------
+class FoveaEngine {
+    constructor(blurAmount, diffThreshold) {
+        this.blurAmount = blurAmount; // e.g. "8px"
+        this.diffThreshold = diffThreshold;
+        this.prevFrame = null;
+
+        // Offscreen canvas for raw frame data extraction
+        this.offscreen = document.createElement('canvas');
+        this.offCtx = this.offscreen.getContext('2d', { willReadFrequently: true });
+    }
+
+    process(videoElement, outputCanvas) {
+        const w = videoElement.videoWidth;
+        const h = videoElement.videoHeight;
+        if (!w || !h) return null;
+
+        // Resize canvases if needed
+        if (this.offscreen.width !== w || this.offscreen.height !== h) {
+            this.offscreen.width = w;
+            this.offscreen.height = h;
+        }
+
+        // 1. Draw current frame to offscreen canvas
+        this.offCtx.drawImage(videoElement, 0, 0, w, h);
+
+        // 2. Get Raw Pixel Data
+        const currentFrameData = this.offCtx.getImageData(0, 0, w, h).data;
+
+        // 3. Initialize previous frame if first run
+        if (!this.prevFrame) {
+            this.prevFrame = new Uint8Array(currentFrameData);
+            // Draw full frame
+            const ctx = outputCanvas.getContext('2d');
+            ctx.drawImage(videoElement, 0, 0, outputCanvas.width, outputCanvas.height);
+            return { type: 'keyframe' };
+        }
+
+        // 4. CALL WASM: Calculate Diff
+        // Returns a BoundingBox object
+        const bbox = calculate_diff(
+            currentFrameData,
+            this.prevFrame,
+            w,
+            h,
+            this.diffThreshold
+        );
+
+        const result = { type: 'noop' };
+
+        if (bbox.changed) {
+            // 5. Update Previous Frame for next loop
+            this.prevFrame.set(currentFrameData);
+
+            // 6. Draw Foveated View (Blur + Clear ROI)
+            const ctx = outputCanvas.getContext('2d');
+
+            // A. Draw blurred background (simulated by drawing full frame with filter)
+            // In a real stream, you wouldn't send this, you'd keep the old static background.
+            // For visualization here:
+            ctx.filter = `blur(${this.blurAmount})`;
+            ctx.drawImage(videoElement, 0, 0);
+            ctx.filter = 'none';
+
+            // B. Draw High-Res ROI
+            const rx = bbox.min_x;
+            const ry = bbox.min_y;
+            const rw = bbox.max_x - bbox.min_x;
+            const rh = bbox.max_y - bbox.min_y;
+
+            if (rw > 0 && rh > 0) {
+                ctx.drawImage(videoElement, rx, ry, rw, rh, rx, ry, rw, rh);
+
+                // Draw red border for visualization
+                ctx.strokeStyle = '#22c55e';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(rx, ry, rw, rh);
+
+                result.type = 'foveated';
+                result.bbox = { x: rx, y: ry, w: rw, h: rh };
+            }
+        }
+
+        // Free WASM memory for the bbox object
+        bbox.free();
+
+        return result;
+    }
+}
+
 // 1. Initialize WASM
 async function main() {
     try {
         log("Loading WebAssembly...", "info");
-        // Point to the .wasm file in the package
-        await init('../../fovea_rs/pkg/fovea_wasm_bg.wasm');
-        engine = new FoveaEngine("8px", 30); // 8px blur, 30 threshold
+        await init('./fovea-lib/fovea_wasm_bg.wasm');
+        engine = new FoveaEngine("8px", 30);
         log("✅ Fovea Engine Initialized!", "info");
     } catch (e) {
         log(`❌ Error loading WASM: ${e.message}`, "error");
