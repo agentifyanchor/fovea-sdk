@@ -60,6 +60,29 @@ await engine.initialize({
 // ... use engine.process() in your render loop
 ```
 
+## 🚀 Quick Start & Examples
+We provide a complete **Vanilla JS** example to get you running in seconds. It demonstrates:
+*   **Side-by-Side Comparison** (Raw vs. Foveated)
+*   **Real-time Bandwidth Stats**
+*   **AI Integration Hooks**
+
+### Run the Demo
+1.  **Clone the Repo**
+    ```bash
+    git clone https://github.com/agentifyanchor/fovea-sdk.git
+    cd fovea-sdk
+    ```
+
+2.  **Run the Example**
+    ```bash
+    cd examples/vanilla-js
+    npm start
+    ```
+    *(This starts a local web server at `http://localhost:3000`)*
+
+3.  **Explore the Code**
+    *   `examples/vanilla-js/main.js`: Shows how to wrap the WASM engine and access the raw pixel data.
+
 ## Real-World Example
 Using **Fovea** with an AI Video Analyzer to detect and describe drawings in real-time with minimal bandwidth usage:
 

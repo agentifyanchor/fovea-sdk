@@ -23,7 +23,7 @@ Since this uses WebAssembly, it must be served via a web server (you cannot just
 
 3. Open the URL shown (usually `http://localhost:3000`).
 
-## Worker vs Main Thread Considerations
+## Worker vs Main Thread (Answer to your question)
 *   **For UI/Widget**: Main thread (like this example) is usually fine and easiest to debug.
 *   **For Heavy Load**: Use a Web Worker.
     *   **What to import?** Inside the worker, you still import the `.js` file (e.g., `import init from './fovea_rs/pkg/fovea_wasm.js'`).
