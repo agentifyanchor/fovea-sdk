@@ -1,5 +1,5 @@
 {
-    "name": "fovea-sdk",
+    "name": "@hexaversia/fovea-sdk",
     "version": "0.1.0",
     "description": "Foveated Streaming Engine: High-performance, bandwidth-efficient screen sharing using WASM and Dynamic ROI.",
     "main": "index.js",
@@ -16,9 +16,13 @@
         "streaming",
         "wasm",
         "screen-sharing",
-        "bandwidth-optimization"
+        "bandwidth-optimization",
+        "real-time",
+        "video-analysis",
+        "ai",
+        "computer-vision"
     ],
-    "author": "Fovea Team",
+    "author": "Hexaversia Team",
     "license": "MIT",
     "repository": {
         "type": "git",
