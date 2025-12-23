@@ -7,4 +7,4 @@
 * Dynamic Region of Interest (ROI)
 
 [Get Started](README.md)
-[GitHub](https://github.com/your-username/fovea-sdk)
+[GitHub](https://github.com/agentifyanchor/fovea-sdk)

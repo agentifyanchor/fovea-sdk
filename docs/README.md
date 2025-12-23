@@ -2,7 +2,7 @@
 
 **Foveated Streaming Engine** for High-Performance Screen Sharing.
 
-![Fovea Banner](https://via.placeholder.com/800x200?text=Fovea+SDK)
+![Fovea Banner](https://placehold.co/800x200?text=Fovea+SDK)
 
 ## Overview
 Fovea uses **WebAssembly (Rust)** to perform "Foveated Rendering" on video streams entirely on the client side. It detects changes in the screen and only sends high-resolution updates for the active region (ROI), while blurring the static background. This results in **massive bandwidth savings (up to 90%)** for screen sharing applications.

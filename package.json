@@ -22,12 +22,12 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/your-username/fovea-sdk.git"
+        "url": "git+https://github.com/agentifyanchor/fovea-sdk.git"
     },
     "bugs": {
-        "url": "https://github.com/your-username/fovea-sdk/issues"
+        "url": "https://github.com/agentifyanchor/fovea-sdk/issues"
     },
-    "homepage": "https://your-username.github.io/fovea-sdk",
+    "homepage": "https://agentifyanchor.github.io/fovea-sdk",
     "dependencies": {},
     "devDependencies": {}
 }
