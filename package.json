@@ -1,6 +1,6 @@
 {
     "name": "@hexaversia/fovea-sdk",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Foveated Streaming Engine: High-performance, bandwidth-efficient screen sharing using WASM and Dynamic ROI.",
     "main": "index.js",
     "types": "index.d.ts",
