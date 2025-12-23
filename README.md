@@ -75,5 +75,9 @@ await engine.initialize({
 - `canvas`: Target HTMLCanvasElement (where the foveated effect is drawn)
 - Returns: `{ type, bbox, isKeyframe }`
 
+## 🤝 Contributing
+Want to improve the engine? We welcome optimizations!
+Since the core is written in Rust, please see our [Contribution Guide](CONTRIBUTING.md) for build instructions.
+
 ## License
 MIT
