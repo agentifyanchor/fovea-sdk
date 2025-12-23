@@ -60,6 +60,11 @@ await engine.initialize({
 // ... use engine.process() in your render loop
 ```
 
+## Real-World Example
+Using **Fovea** with an AI Video Analyzer to detect and describe drawings in real-time with minimal bandwidth usage:
+
+![Real-World Demo](assets/demo_robot.png)
+
 ## API
 
 ### `new FoveaEngine(config)`

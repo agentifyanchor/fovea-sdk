@@ -6,7 +6,8 @@
     "types": "index.d.ts",
     "files": [
         "index.js",
-        "fovea_rs/pkg"
+        "fovea_rs/pkg",
+        "docs/assets"
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +23,7 @@
         "ai",
         "computer-vision"
     ],
-    "author": "Hexaversia Team",
+    "author": "Fovea Team",
     "license": "MIT",
     "repository": {
         "type": "git",
