@@ -60,7 +60,7 @@ await engine.initialize({
 // ... use engine.process() in your render loop
 ```
 
-## 🚀 Quick Start & Examples
+###  3. Quick Start & Examples
 We provide a complete **Vanilla JS** example to get you running in seconds. It demonstrates:
 *   **Side-by-Side Comparison** (Raw vs. Foveated)
 *   **Real-time Bandwidth Stats**
