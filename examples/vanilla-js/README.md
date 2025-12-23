@@ -2,6 +2,8 @@
 
 This is a "fluid simple" example showing how to use Fovea with plain JavaScript.
 
+![Demo Screenshot](assets/demo_screenshot.png)
+
 ## Features
 *   **Screen Sharing**: Basic capture flow.
 *   **Comparison**: See Raw Stream vs. Foveated Stream side-by-side.
